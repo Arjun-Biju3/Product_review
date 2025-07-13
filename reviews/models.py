@@ -23,7 +23,7 @@ class Review(models.Model):
     feedback = models.TextField()
 
     class Meta:
-        unique_together = ('product', 'user')  # prevent duplicates
+        unique_together = ('product', 'user')
 
     def __str__(self):
         return f'{self.product.name} - {self.user.username}'

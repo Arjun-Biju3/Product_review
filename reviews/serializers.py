@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import Product, Review
 
 class ReviewSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(read_only=True)
+    user = serializers.StringRelatedField(read_only=True)  
 
     class Meta:
         model = Review
@@ -11,16 +11,18 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     reviews = ReviewSerializer(many=True, read_only=True)
-    average_rating = serializers.FloatField(source='average_rating', read_only=True)
+    average_rating = serializers.FloatField(read_only=True)  
 
     class Meta:
         model = Product
         fields = ['id', 'name', 'description', 'price', 'average_rating', 'reviews']
 
+
 class ProductCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ['name', 'description', 'price']
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
