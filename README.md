@@ -32,17 +32,17 @@ Authorization: Token <your_token>
 Product Endpoints:
 ------------------
 GET     /api/products/              -> List all products (public)  
-GET     /api/products/<id>/         -> Retrieve product by ID (public)  
+GET     /api/products/id/         -> Retrieve product by ID (public)  
 POST    /api/products/              -> Create new product (admin only)  
-PUT     /api/products/<id>/         -> Update product (admin only)  
-DELETE  /api/products/<id>/         -> Delete product (admin only)
+PUT     /api/products/id/         -> Update product (admin only)  
+DELETE  /api/products/id/         -> Delete product (admin only)
 
 ----------------------------------------------------
 
 Review Endpoints:
 -----------------
-GET     /api/products/<id>/reviews/     -> List reviews for a product (public)  
-POST    /api/products/<id>/reviews/     -> Submit review (auth users only, 1 per product)
+GET     /api/products/id/reviews/     -> List reviews for a product (public)  
+POST    /api/products/id/reviews/     -> Submit review (auth users only, 1 per product)
 
 ----------------------------------------------------
 
