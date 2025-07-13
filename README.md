@@ -4,63 +4,56 @@ Product Review System API
 This is a RESTful API built using Django and Django REST Framework that supports product management and user reviews with role-based access.
 
 ----------------------------------------------------
-👤 Roles:
+Roles:
 - Admin: Can add, update, and delete products.
 - Registered User: Can post one review per product.
 - Public: Can view products and reviews.
 ----------------------------------------------------
 
-Admin Credentials
------------------
+Admin Credentials:
+------------------
 Username: admin
 Password: admin
 
-📮 API Endpoints
-================
+----------------------------------------------------
+API Endpoints
+----------------------------------------------------
 
-🔐 Authentication
-------------------
-POST   /api/register/         - Register a new user
-POST   /api/auth/             - Login to get token
+Authentication:
+---------------
+POST    /api/register/               -> Register a new user  
+POST    /api/auth/                  -> Login and get authentication token
 
-Authorization Required:
-------------------------
-Add this header in Postman or any client:
-
+Use this header in protected requests:
 Authorization: Token <your_token>
 
-📦 Product Endpoints
----------------------
-GET    /api/products/             - List all products (public)
-GET    /api/products/<id>/        - Retrieve product by ID
-POST   /api/products/             - Create product (admin only)
-PUT    /api/products/<id>/        - Update product (admin only)
-DELETE /api/products/<id>/        - Delete product (admin only)
+----------------------------------------------------
 
-📝 Review Endpoints
---------------------
-GET    /api/products/<id>/reviews/     - List reviews for a product
-POST   /api/products/<id>/reviews/     - Submit review (auth users only, 1 per product)
+Product Endpoints:
+------------------
+GET     /api/products/              -> List all products (public)  
+GET     /api/products/<id>/         -> Retrieve product by ID (public)  
+POST    /api/products/              -> Create new product (admin only)  
+PUT     /api/products/<id>/         -> Update product (admin only)  
+DELETE  /api/products/<id>/         -> Delete product (admin only)
 
-Review Body Example:
----------------------
-{
-  "rating": 4,
-  "feedback": "Great product!"
-}
+----------------------------------------------------
 
-💡 Token Authentication
-------------------------
-- First POST to /api/auth/ with username & password to get a token
-- Use that token in all secured API calls:
-  Authorization: Token your_token_here
+Review Endpoints:
+-----------------
+GET     /api/products/<id>/reviews/     -> List reviews for a product (public)  
+POST    /api/products/<id>/reviews/     -> Submit review (auth users only, 1 per product)
 
-🧪 Example Review Submission
------------------------------
+----------------------------------------------------
+
+Review Submission Example:
+--------------------------
+Endpoint:
 POST /api/products/1/reviews/
+
 Headers:
-  Authorization: Token your_token
-  Content-Type: application/json
+Authorization: Token your_token_here  
+Content-Type: application/json
 
 Body:
 {
@@ -68,9 +61,20 @@ Body:
   "feedback": "Excellent product!"
 }
 
-✅ Technologies Used
----------------------
-- Django 5.x
-- Django REST Framework
+----------------------------------------------------
+
+Token Authentication Flow:
+--------------------------
+1. Login using POST /api/auth/ with username and password  
+2. Copy the token received  
+3. Send this token in headers for authenticated requests:
+   Authorization: Token your_token
+
+----------------------------------------------------
+
+Technologies Used:
+------------------
+- Django 5.x  
+- Django REST Framework  
 - Token Authentication
 
